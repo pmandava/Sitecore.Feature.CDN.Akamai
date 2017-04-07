@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+
 
 namespace Sitecore.Feature.CDN
 {
-    public class AkamaiPurge
+  
+    public class AkamaiPurge 
     {
         /// <summary>
         /// Gets or sets the objects
@@ -26,13 +25,6 @@ namespace Sitecore.Feature.CDN
         /// Gets or sets the domain
         /// </summary>
         public string domain { get; set; }
-
-        public AkamaiPurge()
-        {
-            action = "remove";
-            type = "arl";
-            domain = "production";
-        }
 
     }
 }

@@ -43,5 +43,20 @@ namespace Sitecore.Feature.CDN
         /// </summary>
         public string APIpoint { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Doamin
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Action
+        /// </summary>
+        public string Action { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Type
+        /// </summary>
+        public string Type { get; set; }
+
     }
 }

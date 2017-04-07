@@ -1,9 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sitecore.Feature.CDN.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="Sitecore_Feature_CDN_Azure_AkamaiPurgeCache_PurgeApi" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://ccuapi.akamai.com:443/soap/servlet/soap/purge</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

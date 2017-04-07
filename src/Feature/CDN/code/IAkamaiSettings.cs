@@ -27,5 +27,9 @@ namespace Sitecore.Feature.CDN
         string Password { get; set; }
         string Queue { get; set; }
         string APIpoint { get; set; }
-     }
+        string Domain { get; set; }
+        string Type { get; set; }
+        string Action { get; set; }
+    }
+
 }

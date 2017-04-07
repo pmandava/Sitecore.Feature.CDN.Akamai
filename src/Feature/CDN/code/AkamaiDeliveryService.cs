@@ -29,8 +29,7 @@ namespace Sitecore.Feature.CDN
     using Data.Items;
     using Foundation.CDN;
     using Abstractions;
-    using AkamaiPurgeCache;
-
+    
     public class AkamaiDeliveryService : IDeliveryService
     {
         /// <summary>
@@ -92,43 +91,20 @@ namespace Sitecore.Feature.CDN
 
             //Need to Purge Content
            
-            var fileToPurge = urls.ToArray(); //this is the item in akamai proxy that you want to purge
+            var filesToPurge = urls.ToArray(); //this is the item in akamai proxy that you want to purge
            
             try
             {
-                //Method 1. Using Akamai Webservice Refer : https://www.codeproject.com/Articles/186089/How-to-Purge-Cache-in-Akamai-Proxy-Server-using-C
-
-
-                string action = "action=remove";    //other value is action=invalidate 
-                string domain = "domain=production";//other value is domain=staging 
-
-                //type: type=cpcode or type=arl >> arl: akamai resource locator. 
-                //url: uniform resource locator. 
-                //To use the type cpcode option, your administrator must enable purge-by-cpcode access for your username through Akamai EdgeControl. 
-
-                string purgeType = "type=arl"; //other value is type=cpcode 
-
-                string[] options = new string[] { action, domain, purgeType };
-                var purgeAPI = new PurgeApi();
-                var purgeResult = purgeAPI.purgeRequest(this.akamaiSettings.Username, this.akamaiSettings.Password, string.Empty, options, fileToPurge);
-
-                if (purgeResult.resultCode >= 300)
-                {
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.AppendFormat("Error Code: {0}", purgeResult.resultCode);
-                    sb.AppendFormat("Error Message: {0}", purgeResult.resultMsg);
-                    sb.AppendFormat("Session ID: {0}", purgeResult.sessionID);
-                    sb.AppendFormat("URI Index: {0}", purgeResult.uriIndex);
-                    this.logger.Error($"Purge Request failed with reason : {sb}", this);
-                    this.logger.Error($"Purge Request for these items failed :\n {String.Join("\n", fileToPurge)}", this);
-                }
-
-                //Method 2. Using REST API Refer : https://developer.akamai.com/api/purge/ccu-v2/overview.html
+             
+                //Using REST API Refer : https://developer.akamai.com/api/purge/ccu-v2/overview.html
 
                 //Akamai Purge Object
-                AkamaiPurge purgeobject = new AkamaiPurge()
+                var purgeobject = new AkamaiPurge()
                 {
-                    objects = fileToPurge
+                    objects = filesToPurge,
+                    type = this.akamaiSettings.Type,
+                    domain = this.akamaiSettings.Domain,
+                    action = this.akamaiSettings.Action
                 };
 
                 //Using HTTP Client
@@ -145,7 +121,7 @@ namespace Sitecore.Feature.CDN
                 if (!response.IsSuccessStatusCode)
                 {
                     this.logger.Error($"Purge Request failed with reason : {response.ReasonPhrase}", this);
-                    this.logger.Error($"Purge Request for these items failed :\n {String.Join("\n", fileToPurge)}", this);
+                    this.logger.Error($"Purge Request for these items failed :\n {String.Join("\n", filesToPurge)}", this);
                 }
 
             }

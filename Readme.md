@@ -1,3 +1,3 @@
-﻿## CDN Azure Accelerator
+﻿## CDN Akamai Accelerator
 
-CDN Azure Provider using the Sitecore.Foundation.CDN accelerator
+CDN Akamai Provider using the Sitecore.Foundation.CDN accelerator

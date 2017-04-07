@@ -22,15 +22,5 @@ namespace Sitecore.Feature.CDN.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://ccuapi.akamai.com:443/soap/servlet/soap/purge")]
-        public string Sitecore_Feature_CDN_Azure_AkamaiPurgeCache_PurgeApi {
-            get {
-                return ((string)(this["Sitecore_Feature_CDN_Azure_AkamaiPurgeCache_PurgeApi"]));
-            }
-        }
     }
 }
